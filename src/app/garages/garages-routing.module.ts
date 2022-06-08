@@ -6,8 +6,11 @@ import { GaragesPage } from './garages.page';
 const routes: Routes = [
   {
     path: '',
-    component: GaragesPage
-  }
+    children:[
+      {path:'',component: GaragesPage},
+      {path:':id',  loadChildren: () => import('./garage-detail/garage-detail.module').then( m => m.GarageDetailPageModule)}
+    ]
+  },
 ];
 
 @NgModule({
