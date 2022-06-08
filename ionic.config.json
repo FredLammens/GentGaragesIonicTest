@@ -1,0 +1,7 @@
+{
+  "name": "GentGarages",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

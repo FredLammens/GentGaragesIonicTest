@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "GentGarages",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
