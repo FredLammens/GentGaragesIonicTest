@@ -1,5 +1,5 @@
-import { Record } from './../garage.model';
-import { GaragesService } from './../garages.service';
+import { GarageFacade } from './../+state/garage.facade';
+import { Record } from '../+state/garage.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
@@ -12,13 +12,13 @@ import { take } from 'rxjs/operators';
 })
 export class GarageDetailPage implements OnInit {
   public garage$: Observable<Record>;
-  constructor(private activatedRoute: ActivatedRoute, private garagesService: GaragesService) { }
+  constructor(private activatedRoute: ActivatedRoute, private garages: GarageFacade) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.pipe(take(1)).subscribe((paramMap) => {
       if(paramMap.has('garageId')) {
         const recipeId = paramMap.get('garageId');
-        this.garage$ = this.garagesService.getGarageById(recipeId);
+        this.garage$ = this.garages.getGarageById(recipeId);
       }
     });
   }

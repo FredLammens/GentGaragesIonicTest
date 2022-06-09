@@ -1,4 +1,5 @@
-import { GaragesService } from './garages.service';
+import { GarageFacade } from './+state/garage.facade';
+
 import { Component, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
@@ -12,9 +13,9 @@ import { Router } from '@angular/router';
 export class GaragesPage{
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   //TODO: add catchError
-  public garages$ = this.garages.getAllGarages().pipe(tap(val => console.log(val)));
+  public garages$ = this.garages.getGarages$.pipe(tap(val => console.log(val)));
 
-  constructor(private garages: GaragesService,private router: Router) {}
+  constructor(private garages: GarageFacade,private router: Router) {}
 
   public loadData(event) {
     setTimeout(() => {
