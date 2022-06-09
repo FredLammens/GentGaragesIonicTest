@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar animated></ion-searchbar>
+  <ion-searchbar (ionBlur)="addSearch($event)" animated></ion-searchbar>
 <ion-list class="card-container"  *ngIf="garages$ | async as garages">
   <ion-card *ngFor="let garage of garages.records" button="true" [routerLink]="['./',garage.recordid]">
     <!--change this to use custom img service to get first search result based on title name-->
@@ -19,10 +19,4 @@
     </ion-card-content>
   </ion-card>
 </ion-list>
-<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-  <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Loading more data...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
 </ion-content>

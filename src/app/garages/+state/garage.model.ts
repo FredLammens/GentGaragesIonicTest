@@ -2,7 +2,7 @@
 export interface GarageDBItem {
   nhits: number;
   parameters: Parameters;
-  records: Array<Record>;
+  records: Set<Record>;
   facet_groups: Array<FacetGroup>;
 
 }

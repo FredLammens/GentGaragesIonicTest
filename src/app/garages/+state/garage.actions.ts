@@ -11,3 +11,12 @@ export const getGaragesListSuccess = createAction(
   '[GARAGE LIST] Get garages List Success',
   props<{ response: GarageDBItem}>(),
 );
+
+export const next = createAction(
+  '[GARAGE LIST] Get next garages List page',
+);
+
+export const addSearch = createAction(
+  '[GARAGE LIST] add search field',
+  props<{ searchField: string}>(),
+);

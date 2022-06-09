@@ -1,6 +1,6 @@
 import { GarageFacade } from './../+state/garage.facade';
 import { Record } from '../+state/garage.model';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { take } from 'rxjs/operators';
@@ -9,6 +9,7 @@ import { take } from 'rxjs/operators';
   selector: 'app-garage-detail',
   templateUrl: './garage-detail.page.html',
   styleUrls: ['./garage-detail.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GarageDetailPage implements OnInit {
   public garage$: Observable<Record>;
