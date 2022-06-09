@@ -9,12 +9,14 @@ export interface GarageDBItem {
 
 export interface Parameters {
   dataset: string;
+  q?: string; // zoeken in volledige tekst
+  lang?: string; //default = nl 2letterige taalcode
   rows: number;
-  start: number;
-  sort: Array<string>;
-  facet: Array<string>;
+  start: number; //for pagination
+  sort?: Array<string>; //Sorteer uitdrukking (veld of -veld)
+  facet?: Array<string>; //Naam van facetten die moeten worden geactiveerd in de resultaten
   format: string;
-  timeZone: string;
+  timezone: string;
 }
 
 export interface Record {
@@ -65,7 +67,10 @@ export interface GeoMetry {
   type: string;
   coordinates: Array<number>;
 }
-
+/**
+ * Enumerate facet values for datasets and returns a list of values for each facet.
+ * Can be used to implement guided navigation in large result sets.
+ */
 export interface FacetGroup {
   name: string;
   facets: Array<Facet>;
