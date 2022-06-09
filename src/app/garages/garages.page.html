@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionBlur)="addSearch($event)" animated></ion-searchbar>
+  <ion-searchbar (ionBlur)="addSearch($event)" (keydown.enter)="$event.target.blur(); $event.stopPropagation()" animated></ion-searchbar>
 <ion-list class="card-container"  *ngIf="garages$ | async as garages">
   <ion-card *ngFor="let garage of garages.records" button="true" [routerLink]="['./',garage.recordid]">
     <!--change this to use custom img service to get first search result based on title name-->
