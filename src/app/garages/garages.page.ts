@@ -2,6 +2,7 @@ import { GaragesService } from './garages.service';
 import { Component, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-garages',
@@ -10,13 +11,12 @@ import { tap } from 'rxjs/operators';
 })
 export class GaragesPage{
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  //TODO: add catchError
   public garages$ = this.garages.getAllGarages().pipe(tap(val => console.log(val)));
 
-  constructor(private garages: GaragesService) {}
+  constructor(private garages: GaragesService,private router: Router) {}
 
-  // eslint-disable-next-line max-len
-  // https://data.stad.gent/explore/dataset/bezetting-parkeergarages-real-time/map/?sort=-occupation&location=15,51.04844,3.72267&basemap=jawg.streets
-  loadData(event) {
+  public loadData(event) {
     setTimeout(() => {
       console.log('Done');
       event.target.complete();
@@ -28,6 +28,8 @@ export class GaragesPage{
       }
     }, 500);
   }
-
+  public removeWeirdChars(input: string): string {
+    return input.replace('? ','');
+  }
 }
 

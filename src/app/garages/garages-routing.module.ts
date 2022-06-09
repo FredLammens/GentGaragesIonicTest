@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     children:[
       {path:'',component: GaragesPage},
-      {path:':id',  loadChildren: () => import('./garage-detail/garage-detail.module').then( m => m.GarageDetailPageModule)}
+      {path:':garageId',  loadChildren: () => import('./garage-detail/garage-detail.module').then( m => m.GarageDetailPageModule)}
     ]
   },
 ];

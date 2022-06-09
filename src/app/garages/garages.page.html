@@ -5,16 +5,17 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar animated></ion-searchbar>
 <ion-list *ngIf="garages$ | async as garages">
-  <ion-card *ngFor="let garage of garages.records">
+  <ion-card *ngFor="let garage of garages.records" button="true" [routerLink]="['./',garage.recordid]">
+    <!--change this to use custom img service to get first search result based on title name-->
+    <img src="http://via.placeholder.com/640x360" loading="lazy" [alt]="'image of ' + garage.fields.name" />
     <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
+      <ion-card-title>{{garage.fields.name}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      {{removeWeirdChars(garage.fields.description)}}
     </ion-card-content>
   </ion-card>
 </ion-list>
