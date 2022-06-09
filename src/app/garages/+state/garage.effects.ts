@@ -4,25 +4,16 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { getGaragesListStart, getGaragesListSuccess } from './garage.actions';
-import { switchMap, catchError, map, retry } from 'rxjs/operators';
-import { Parameters } from './garage.model';
-import { of, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
-
-const parameters: Parameters = {
-  dataset: 'bezetting-parkeergarages-real-time',
-  rows :10,
-  start :0,
-  format :'json',
-  timezone :'UTC',
-};
+import { switchMap, map, withLatestFrom } from 'rxjs/operators';
+import { getParameters } from './garage.selector';
 
 @Injectable()
 export class GarageEffects {
   public getGaragesList$: Observable<Action> = createEffect(() =>
   this.actions$.pipe(
     ofType(getGaragesListStart),
-    switchMap(() => this.garagesService.getAllGarages(parameters)
+    withLatestFrom(this.store.select(getParameters)),
+    switchMap(([_,parameters]) => this.garagesService.getAllGarages(parameters)
     .pipe(
         map((response) =>
           getGaragesListSuccess({response}

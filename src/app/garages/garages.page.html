@@ -9,7 +9,7 @@
 <ion-list class="card-container"  *ngIf="garages$ | async as garages">
   <ion-card *ngFor="let garage of garages.records" button="true" [routerLink]="['./',garage.recordid]">
     <!--change this to use custom img service to get first search result based on title name-->
-    <img src="http://via.placeholder.com/640x360" loading="lazy" [alt]="'image of ' + garage.fields.name" />
+    <img src="https://loremflickr.com/640/360" loading="lazy" [alt]="'image of ' + garage.fields.name" />
     <ion-card-header>
       <ion-card-title>{{garage.fields.name}}</ion-card-title>
     </ion-card-header>

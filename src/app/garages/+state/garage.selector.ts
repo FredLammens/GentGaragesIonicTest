@@ -14,3 +14,8 @@ export const getGarageById = ( garageId: string) => createSelector(
   garageState,
   (state) => state.garages.records.find(g => g.recordid === garageId),
 );
+
+export const getParameters = createSelector(
+  garageState,
+  (state) => state.garages.parameters
+);
