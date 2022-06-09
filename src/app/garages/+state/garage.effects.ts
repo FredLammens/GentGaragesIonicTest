@@ -4,8 +4,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { getGaragesListStart, getGaragesListSuccess } from './garage.actions';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { switchMap, catchError, map, retry } from 'rxjs/operators';
 import { Parameters } from './garage.model';
+import { of, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const parameters: Parameters = {
   dataset: 'bezetting-parkeergarages-real-time',
@@ -25,9 +27,8 @@ export class GarageEffects {
         map((response) =>
           getGaragesListSuccess({response}
           )),
-        catchError(err => {throw new Error(err);})
     ))
-  ));
+));
 
   constructor(
     private garagesService: GaragesService,

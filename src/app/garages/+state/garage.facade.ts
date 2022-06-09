@@ -3,11 +3,14 @@ import { Store } from '@ngrx/store';
 import { getGaragesListStart } from './garage.actions';
 import { getGarages, getGarageById } from './garage.selector';
 import { Record } from './garage.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class GarageFacade {
-  public getGarages$ = this.store.select(getGarages);
+  public getGarages$ = this.store.select(getGarages).pipe(
+    catchError(err => of([]))
+  );
 
   constructor(private store: Store) {
     this.store.dispatch(getGaragesListStart());
