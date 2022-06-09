@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { getSimplifiedUsersListSuccess } from './garage.actions';
+import { getGaragesListSuccess } from './garage.actions';
 import { GarageState } from './garage.state';
 export const GARAGE_LIS_FEATURE_KEY = 'garageList';
 export const defaultState: GarageState = {
@@ -7,7 +7,7 @@ export const defaultState: GarageState = {
 };
 const reducer = createReducer(
   defaultState,
-  on(getSimplifiedUsersListSuccess, (state,action) => ({
+  on(getGaragesListSuccess, (state,action) => ({
     ...state,
     garages:action.response
   })),
